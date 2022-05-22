@@ -1,0 +1,14 @@
+.character__level {
+    float: right;
+    width: 70%;
+}
+
+.class-choices {
+    width: 20%;
+}
+
+.input {
+    display: block;
+    width: 400px;
+    padding-bottom: 10px;
+}

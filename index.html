@@ -6,14 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DND Setup</title>
     <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="./css/index.css" />
 </head>
 <body>
     <form>
+        <div class="input">
         <label to="character__name">Character Name</label>
-        <input type="text" id="character__name" placeholder="Name"/>
-        <br />
-        <label to="character__level-1">First class</label>
-        <input type="number" min="1" max="20" placeholder="Level" class="character__level" />
+        <input type="text" id="character__name" placeholder="Name" class="character__level"/>
+        </div>
+            
+        <div class="input" id="class-1">
+            <input type="text" list="classes" placeholder="Class" class="class-choices"/>
+            <input type="number" min="1" max="20" placeholder="Level" class="character__level"/>
+        </div>
+
+        <datalist id="classes">
+            <option value="Barbarian">
+            <option value="Bard">
+        </datalist>
     </form>
 
     <script src="dnd-web.js"></script>
