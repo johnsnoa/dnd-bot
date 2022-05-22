@@ -1,6 +1,30 @@
+.character__name {
+    float: right;
+    width: 30%;
+}
+
 .character__level {
     float: right;
-    width: 70%;
+    width: 30%;
+}
+
+.class__clear {
+    position: absolute;
+    right: -60px;
+    width: 50px;
+}
+
+.character__reset {
+    right: -35px;
+    position: absolute;
+    margin-left: 10px;
+    width: 25px;
+    text-align: center;
+    display: none;
+}
+
+.character__reset--enable {
+    display: inline;
 }
 
 .class-choices {
@@ -9,6 +33,7 @@
 
 .input {
     display: block;
-    width: 400px;
+    position: relative;
+    width: 600px;
     padding-bottom: 10px;
 }

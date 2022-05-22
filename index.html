@@ -6,23 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DND Setup</title>
     <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/index.css" />
 </head>
 <body>
     <form>
         <div class="input">
-        <label to="character__name">Character Name</label>
-        <input type="text" id="character__name" placeholder="Name" class="character__level"/>
+            <label to="character__name">Character Name</label>
+            <input type="text" id="character__name" placeholder="Name" class="character__name"/>
         </div>
             
         <div class="input" id="class-1">
-            <input type="text" list="classes" placeholder="Class" class="class-choices"/>
-            <input type="number" min="1" max="20" placeholder="Level" class="character__level"/>
+            <input type="button" class="class__clear" value="Clear">
+            <input type="text" list="classes" placeholder="Class" class="class-choices" required/>
+            <input type="number" min="1" max="20" placeholder="Level" class="character__level character__level--full" required/>
         </div>
 
         <datalist id="classes">
-            <option value="Barbarian">
-            <option value="Bard">
+            <option value="Articifer"></option>
+            <option value="Barbarian"></option>
+            <option value="Bard"></option>
+            <option value="Cleric"></option>
+            <option value="Druid"></option>
+            <option value="Fighter"></option>
+            <option value="Monk"></option>
+            <option value="Paladin"></option>
+            <option value="Ranger"></option>
+            <option value="Rogue"></option>
+            <option value="Sorcerer"></option>
+            <option value="Warlock"></option>
+            <option value="Wizard"></option>
         </datalist>
     </form>
 
