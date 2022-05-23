@@ -1,50 +1,75 @@
 let $form = $('form');
 let new__level = function (event) {
-    let $last = $('.character__level:last');
-    if(!($(event.target).parent().is('.input:eq(1)'))){
-        $(event.target)
-            .siblings('.character__level')
-            .addBack()
-            .addClass('character__level--small');
+    let $target = $(event.target);
+    const selection = $target.val();
+    console.log(event.target.previousValue);
+    console.log(event);
+    if(event.target.previousValue !== undefined) {
+        $(`option[value="${event.target.previousValue}"]`).removeAttr('disabled');
     }
-    const lastLevel = $last[0];
-    if ($(event.target).attr('type') === 'text' && event.target.value !== '') {
-        $(`option[value="${$('.class-choices:last')[0].value}"]`).remove();
+    event.target.previousValue = selection;
+    if(selection === 'blank') {
+        $target.siblings('.character__classes--clear').first().trigger('click');
+        return;
     }
-    if ($('.character__level:last')[0].value !== '' && $('.class-choices:last')[0].value !== '') {
-        $(`option[value="${$('.class-choices:last')[0].value}"]`).remove();
-        const classes = $('.character__level').length + 1;
-        const clear = '<input type="button" class="class__clear" value="Clear">';
-        const charClass = `<input type="text" list="classes" placeholder="Class" class="class-choices"/>`
-        const level = '<input type="number" min="1" max="20" placeholder="Level" class="character__level"/>';
-        $form.append(`<div class="input" id="class-${classes}"></div>`);
-        let $div = $('.input:last');
-        $div
-            .append(clear, charClass, level);
-        $('.character__level, .class-choices').on('change', new__level);
-        $('.class__clear').on('click', clear__level);
-    }
+    $target.siblings('.character__level').first()
+        .addClass('character__level--enable')
+        .on('change', show__new)
+        .on('change', reappear__clear);
+    $target.siblings('.character__classes--clear').first().addClass('character__classes--clear-enable');
 
+    $(`select:not(:focus) > option[value=${selection}]`).attr('disabled', true);
+    $(`select:focus > option[value=${selection}]`).attr('selected', true).siblings('option[selected]').removeAttr('selected');
+    console.log('Selected: ', selection);
 };
-const clear__level = function (event) {
-    let $siblings = $(event.target).siblings();
-    console.log($(event.target));
-    const chooser = $siblings.filter('.class-choices')[0];
-    const choice = chooser.value;
-    if(choice !== '') {
-        $(`<option value="${choice}"></option>`)
-            .insertBefore(
-                $('option').filter(function() {
-                    return $(this)[0].value > choice;
-                }).first()
-            );
+
+let reappear__clear = function (event) {
+    const $target = $(event.target);
+    $target.siblings('.character__classes--clear').first().addClass('character__classes--clear-enable');
+}
+
+let show__new = function(event) {
+    const $target = $(event.target);
+    const $parent = $target.parent();
+    if ($parent.is('.input:last')) {
+        const $clone = $parent.clone();
+        $clone.insertAfter($parent)
+            .children()
+            .each(function () {
+                switch(this.type) {
+                    case 'select-one': 
+                        $(this).on('change', new__level);
+                        break;
+                    case 'number': 
+                        $(this).on('change', show__new).on('change', reappear__clear);
+                        $(this).val('');
+                        break;
+                    case 'button': 
+                        $(this).on('click', clear__level).removeClass('character__classes--clear-enable');
+                        
+                        break;
+                }
+            })
     }
-    $siblings.each(function() {
-        this.value = '';
-    });
+        
+}
+
+const clear__level = function (event) {
+    const $target = $(event.target);
+    const $chooser = $target.siblings('.character__classes');
+    console.log($chooser);
+    console.log($(`option`));
+    $(`option[value="${$chooser.val()}"]`).removeAttr('disabled');
+    if($target.parent().next().length != 0) {
+        $target.parent().next().children('.character__classes--clear').first().trigger('click');
+        $target.parent().remove();
+    }
+    $target.siblings('.character__level').first().val('');
+    $target.removeClass('character__classes--clear-enable');
 };
 
 $(function() {
-    $('.character__level, .class-choices').on('change', new__level);
+    $('.character__classes').on('change', new__level);
+    $('.character__classes--clear').on('click', clear__level);
 });
 

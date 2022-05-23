@@ -1,3 +1,10 @@
+.input {
+    display: block;
+    position: relative;
+    width: 600px;
+    margin-bottom: 20px;
+}
+
 .character__name {
     float: right;
     width: 30%;
@@ -6,34 +13,26 @@
 .character__level {
     float: right;
     width: 30%;
+    display: none;
 }
 
-.class__clear {
-    position: absolute;
+.character__level--enable {
+    display: inline;
+}
+
+.character__classes {
+    width: 20%;
+}
+
+.character__classes--clear {
     right: -60px;
-    width: 50px;
-}
-
-.character__reset {
-    right: -35px;
     position: absolute;
     margin-left: 10px;
-    width: 25px;
+    width: 50px;
     text-align: center;
     display: none;
 }
 
-.character__reset--enable {
+.character__classes--clear-enable {
     display: inline;
-}
-
-.class-choices {
-    width: 20%;
-}
-
-.input {
-    display: block;
-    position: relative;
-    width: 600px;
-    padding-bottom: 10px;
 }
