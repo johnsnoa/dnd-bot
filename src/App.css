@@ -25,25 +25,34 @@
   border: 3px solid;
   border-radius: 10px;
   padding: 0;
+  display: inline;
 }
 
 .form__box label {
-  position: absolute;
   padding: 30px;
 }
 
-.form__box input {
-  margin: 30px;
+.form__box input,
+.form__box select {
+  margin-right: 30px;
   position: relative;
   float: right;
   width: 50%;
 }
 
+.form__box input[type="text"] {
+  margin-top: 20px;
+}
+
 input[type="submit"] {
   width: 50px;
   position: absolute;
-  bottom: -10px;
+  bottom: 5px;
   right: 0px;
+}
+
+.form__break {
+  line-height: 70px;
 }
 
 .abilities__box {
