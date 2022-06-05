@@ -1,7 +1,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Intents } = require('discord.js');
+const express = require('express');
 const { token } = process.env;
+const PORT = process.env.PORT || 5000;
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
@@ -34,3 +36,6 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.login(token);
+
+express()
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));

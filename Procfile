@@ -1,1 +1,1 @@
-worker: node discord/discord_index.js
+web: node discord/discord_index.js
