@@ -37,5 +37,7 @@ client.on('interactionCreate', async interaction => {
 
 client.login(token);
 
-express()
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+const app = express();
+app.get('/', (req, res) => {});
+
+app.listen(5000, () => console.log('Server ready'));
