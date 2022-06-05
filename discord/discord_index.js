@@ -38,6 +38,6 @@ client.on('interactionCreate', async interaction => {
 client.login(token);
 
 const app = express();
-app.get('/', (req, res) => {});
+app.get('/', (req, res) => { res.send('GET successful'); });
 
 app.listen(process.env.PORT || 5000, () => console.log('Server ready'));
